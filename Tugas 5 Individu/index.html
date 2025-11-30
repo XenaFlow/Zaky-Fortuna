@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 5: Arsitektur dan Organisasi Komputer</title>
+    <!-- Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk Ikon --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts --><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .prose h3 {
+            color: #1f2937;
+            font-weight: 700;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            font-size: 1.25rem;
+        }
+        .prose p {
+            margin-bottom: 1em;
+            line-height: 1.75;
+            color: #4b5563;
+        }
+        .prose ul {
+            list-style-type: disc;
+            padding-left: 1.5em;
+            margin-bottom: 1em;
+            color: #4b5563;
+        }
+        /* Custom alert/toast styles */
+        #custom-toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Navbar --><nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="font-bold text-xl text-indigo-600">
+                <i class="fas fa-microchip mr-2"></i>XenaFlow
+            </div>
+            <div class="text-sm text-gray-500">
+                Tugas ARSIKOM
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header / Hero Section --><header class="bg-indigo-700 text-white py-16">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-indigo-500 text-xs font-semibold tracking-wide mb-4 uppercase">Tugas 5 Individu</span>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">Analisis Kinerja Sistem Bus & Arsitektur Komputer</h1>
+            <p class="text-indigo-200 text-lg mb-6">Arsitektur dan Organisasi Komputer (ARSIKOM)</p>
+            
+            <div class="flex justify-center items-center space-x-4 text-sm">
+                <div class="flex items-center">
+                    <div class="bg-white text-indigo-700 rounded-full w-8 h-8 flex items-center justify-center font-bold mr-2">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <!-- NAMA DAN NIM TELAH DITAMBAHKAN DI SINI --><span>Muhammad Zaky Hidayatullah Fortuna (8020240172)</span>
+                </div>
+                <span class="text-indigo-300">•</span>
+                <span>Universitas Dinamika Bangsa (UNAMA)</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content --><main class="flex-grow max-w-3xl mx-auto px-4 py-10 -mt-10">
+        
+        <!-- Article Card --><article class="bg-white rounded-xl shadow-lg p-8 md:p-12 prose max-w-none">
+            
+            <!-- Question 1 --><section class="mb-10 border-b pb-8">
+                <div class="flex items-center mb-4">
+                    <span class="bg-indigo-100 text-indigo-800 text-sm font-bold px-3 py-1 rounded-lg mr-3">Soal 1</span>
+                    <h2 class="text-2xl font-bold text-gray-900 m-0">Faktor yang Memengaruhi Kinerja Sistem Bus</h2>
+                </div>
+                
+                <p>
+                    Kinerja sistem bus sangat krusial karena bus merupakan jalur komunikasi utama antar komponen komputer. Berikut adalah faktor-faktor utama yang memengaruhinya:
+                </p>
+                <ul>
+                    <li>
+                        <strong>Lebar Bus (Bus Width):</strong> 
+                        Semakin lebar bus data (misalnya 32-bit vs 64-bit), semakin banyak data yang dapat ditransfer dalam satu siklus clock. Ini berbanding lurus dengan <em>throughput</em>.
+                    </li>
+                    <li>
+                        <strong>Kecepatan Clock (Clock Speed):</strong>
+                        Semakin tinggi frekuensi bus, semakin cepat data dapat dikirim. Namun, kecepatan ini harus disinkronisasi dengan komponen lain agar tidak terjadi <em>bottleneck</em>.
+                    </li>
+                    <li>
+                        <strong>Metode Arbitrase:</strong>
+                        Cara sistem mengatur giliran penggunaan bus antar perangkat (CPU, DMA, I/O) memengaruhi efisiensi. Metode yang buruk dapat menyebabkan waktu tunggu (latency) yang tinggi.
+                    </li>
+                    <li>
+                        <strong>Tipe Transaksi (Burst vs Single):</strong>
+                        Kemampuan untuk melakukan transfer blok (burst mode) tanpa perlu alamat baru untuk setiap kata data sangat meningkatkan efisiensi bus.
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Question 2 --><section class="mb-10 border-b pb-8">
+                <div class="flex items-center mb-4">
+                    <span class="bg-indigo-100 text-indigo-800 text-sm font-bold px-3 py-1 rounded-lg mr-3">Soal 2</span>
+                    <h2 class="text-2xl font-bold text-gray-900 m-0">Peran Direct Memory Access (DMA)</h2>
+                </div>
+
+                <p>
+                    Dalam sistem tanpa DMA, CPU harus menangani setiap transfer data antara memori dan perangkat I/O (disebut <em>Programmed I/O</em>). Ini sangat tidak efisien karena CPU "sibuk" hanya untuk memindahkan data.
+                </p>
+                <div class="bg-blue-50 border-l-4 border-indigo-500 p-4 mb-4 rounded-lg">
+                    <p class="font-semibold text-indigo-900 mb-1">Bagaimana DMA Meningkatkan Kinerja?</p>
+                    <p class="text-sm text-indigo-800 m-0">
+                        Teknologi DMA memungkinkan modul I/O untuk membaca atau menulis data langsung ke memori utama <strong>tanpa intervensi CPU</strong> secara terus-menerus.
+                    </p>
+                </div>
+                <p>
+                    Prosesnya adalah sebagai berikut:
+                </p>
+                <ol class="list-decimal pl-5 space-y-2 text-gray-600">
+                    <li>CPU memerintahkan DMA Controller untuk mentransfer data (memberikan alamat awal dan jumlah data).</li>
+                    <li>CPU kemudian bebas melakukan tugas lain (seperti mengeksekusi program lain).</li>
+                    <li>DMA mengambil alih bus sistem dan mentransfer data blok besar.</li>
+                    <li>Setelah selesai, DMA mengirimkan sinyal <em>Interrupt</em> ke CPU.</li>
+                </ol>
+                <p>
+                    Hal ini mengurangi beban CPU secara drastis dan meningkatkan throughput bus secara keseluruhan karena transfer data terjadi lebih cepat dan efisien.
+                </p>
+            </section>
+
+            <!-- Question 3 --><section>
+                <div class="flex items-center mb-4">
+                    <span class="bg-indigo-100 text-indigo-800 text-sm font-bold px-3 py-1 rounded-lg mr-3">Soal 3</span>
+                    <h2 class="text-2xl font-bold text-gray-900 m-0">Arsitektur Bus Jamak (Traditional vs High Performance)</h2>
+                </div>
+
+                <!-- Traditional Bus --><div class="mb-6">
+                    <h3 class="flex items-center text-lg font-bold text-gray-800 mb-2">
+                        <i class="fas fa-history text-gray-400 mr-2"></i> Arsitektur Bus Jamak Tradisional
+                    </h3>
+                    <p>
+                        Pada arsitektur tradisional, terdapat pemisahan antara <strong>Local Bus</strong> (menghubungkan CPU dan Cache) dan <strong>System Bus</strong> (menghubungkan Memori Utama). Masalah utamanya adalah bus ekspansi (untuk I/O) terhubung langsung ke bus sistem yang juga digunakan memori.
+                    </p>
+                    <div class="p-4 border rounded-lg bg-gray-50 mb-3 text-center">
+                        <img src="https://sawitri8580.files.wordpress.com/2009/07/arsitektur-bus-jamak-tradisional.jpg?w=455&h=206" alt="Arsitektur Bus Jamak Tradisional" class="w-full h-auto rounded-lg shadow-sm mx-auto">
+                    </div>
+                    <p>
+                        <strong>Kelemahan:</strong> Perangkat I/O yang lambat dapat membebani kinerja bus sistem, sehingga akses CPU ke memori utama bisa terhambat. Ini menjadi <em>bottleneck</em> saat perangkat I/O semakin banyak.
+                    </p>
+                </div>
+
+                <!-- High Performance Bus --><div>
+                    <h3 class="flex items-center text-lg font-bold text-gray-800 mb-2">
+                        <i class="fas fa-rocket text-indigo-500 mr-2"></i> Arsitektur Bus Kinerja Tinggi
+                    </h3>
+                    <p>
+                        Arsitektur ini memperkenalkan <strong>High-Speed Bus</strong> (seperti PCI atau Mezzanine Bus) yang terhubung erat dengan sistem bus tetapi terisolasi dari bus ekspansi yang lebih lambat.
+                    </p>
+                    <div class="p-4 border rounded-lg bg-gray-50 mb-3 text-center">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw0CoXOc9TkUnknNbXKoE5ku9_wUfi1NiYIA&s" alt="Arsitektur Bus Kinerja Tinggi" class="w-full h-auto rounded-lg shadow-sm mx-auto">
+                    </div>
+                    <p>
+                        <strong>Keunggulan:</strong>
+                    </p>
+                    <ul>
+                        <li>Perangkat berkecepatan tinggi (Grafis, Network, Video) diletakkan di High-Speed Bus agar memiliki akses cepat ke CPU/Memori.</li>
+                        <li>Perangkat lambat (Fax, Modem, Serial) diletakkan di Expansion Bus yang terpisah.</li>
+                        <li>Isolasi ini mencegah perangkat lambat "menyumbat" jalur data utama, sehingga kinerja sistem secara keseluruhan meningkat drastis.</li>
+                    </ul>
+                </div>
+            </section>
+
+        </article>
+
+        <!-- Signature/Submission Info --><div class="mt-8 text-center text-gray-500 text-sm">
+            <p>Dibuat untuk memenuhi Tugas 5 Mata Kuliah ARSIKOM.</p>
+            
+        </div>
+
+    </main>
+
+    <!-- Floating Action Button for Print/Share --><div class="fixed bottom-6 right-6 flex flex-col space-y-3">
+        <button onclick="window.print()" class="bg-gray-800 hover:bg-gray-700 text-white p-4 rounded-full shadow-lg transition transform hover:-translate-y-1" title="Cetak ke PDF">
+            <i class="fas fa-print fa-lg"></i>
+        </button>
+        <button onclick="copyLink()" class="bg-indigo-600 hover:bg-indigo-500 text-white p-4 rounded-full shadow-lg transition transform hover:-translate-y-1" title="Salin Link">
+            <i class="fas fa-link fa-lg"></i>
+        </button>
+    </div>
+
+    <!-- Custom Toast Notification --><div id="custom-toast" class="hidden">
+        <div class="bg-green-500 text-white px-6 py-3 rounded-xl shadow-2xl flex items-center space-x-2">
+            <i class="fas fa-check-circle"></i>
+            <span id="toast-message">Link berhasil disalin! Silakan tempel di tempat pengumpulan tugas.</span>
+        </div>
+    </div>
+
+    <!-- Simple Script for Interactivity --><script>
+        // Fungsi untuk menampilkan toast notifikasi
+        function showToast(message) {
+            const toast = document.getElementById('custom-toast');
+            document.getElementById('toast-message').textContent = message;
+            toast.classList.remove('hidden');
+            toast.style.opacity = '1';
+
+            // Sembunyikan setelah 3 detik
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 300); // Tunggu sampai transisi opacity selesai
+            }, 3000);
+        }
+
+        // Fungsi untuk menyalin link
+        function copyLink() {
+            // Menggunakan execCommand karena navigator.clipboard mungkin dibatasi di iframe
+            try {
+                const dummy = document.createElement('input');
+                const text = window.location.href;
+                document.body.appendChild(dummy);
+                dummy.value = text;
+                dummy.select();
+                document.execCommand('copy');
+                document.body.removeChild(dummy);
+                showToast('Link berhasil disalin! Silakan tempel di tempat pengumpulan tugas.');
+            } catch (err) {
+                console.error('Gagal menyalin link: ', err);
+                showToast('Gagal menyalin link. Mohon salin secara manual.');
+            }
+        }
+    </script>
+
+</body>
+</html>
